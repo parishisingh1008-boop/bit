@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HealthRisk Predictor AI</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="background-elements">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+    </div>
+
+    <div class="container">
+        <header>
+            <h1>HealthRisk <span>Predictor</span></h1>
+            <p>Advanced ML analysis for patient blood tests & symptoms</p>
+        </header>
+
+        <main>
+            <div class="card form-card">
+                <h2>Patient Data Input</h2>
+                <form id="prediction-form">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="age">Age (years)</label>
+                            <input type="number" id="age" required min="1" max="120" placeholder="e.g. 45">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="glucose">Glucose Level (mg/dL)</label>
+                            <input type="number" id="glucose" required step="0.1" placeholder="e.g. 110.5">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="bloodPressure">Blood Pressure (Systolic)</label>
+                            <input type="number" id="bloodPressure" required placeholder="e.g. 120">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="bmi">BMI</label>
+                            <input type="number" id="bmi" required step="0.1" placeholder="e.g. 24.5">
+                        </div>
+                    </div>
+
+                    <div class="symptoms-section">
+                        <h3>Symptoms</h3>
+                        <div class="checkbox-group">
+                            <label class="custom-checkbox">
+                                <input type="checkbox" id="fatigue">
+                                <span class="checkmark"></span>
+                                Chronic Fatigue
+                            </label>
+                            
+                            <label class="custom-checkbox">
+                                <input type="checkbox" id="fever">
+                                <span class="checkmark"></span>
+                                Persistent Fever
+                            </label>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="submit-btn" id="submit-btn">
+                        <span>Analyze Risk Profile</span>
+                        <div class="loader hidden"></div>
+                    </button>
+                </form>
+            </div>
+
+            <div class="card result-card hidden" id="result-card">
+                <h2>Analysis Results</h2>
+                
+                <div class="risk-meter">
+                    <div class="meter-fill" id="meter-fill"></div>
+                </div>
+                
+                <div class="result-details">
+                    <div class="category-display" id="risk-category">--</div>
+                    <div class="probability-display">
+                        <span id="risk-probability">--</span>% Confidence
+                    </div>
+                </div>
+                
+                <p class="disclaimer">This is a prototype ML prediction model. Not intended for actual medical diagnosis.</p>
+                <button class="reset-btn" id="reset-btn">Analyze Another Patient</button>
+            </div>
+        </main>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
